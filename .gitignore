@@ -54,4 +54,4 @@ logs/
 # =========================
 uploads/
 Server/Config/GoogleService.json
-Client\src\Components\Firebase\firebase.js
+Client/src/Components/Firebase/firebase.js
