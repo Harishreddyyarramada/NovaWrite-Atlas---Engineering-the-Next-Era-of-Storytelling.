@@ -3,10 +3,17 @@ const fs = require('fs');
 const path = require('path');
 
 let firebaseInitialized = false;
+let firebaseInitError = null;
+
+const toTrimmedString = (value) => String(value || '').trim();
 
 const resolveServiceAccount = () => {
   if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
-    return JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+    try {
+      return JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+    } catch (_error) {
+      throw new Error('FIREBASE_SERVICE_ACCOUNT_JSON is not valid JSON');
+    }
   }
 
   const configuredPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
@@ -30,11 +37,29 @@ const ensureFirebaseInitialized = () => {
     firebaseInitialized = true;
     return;
   }
-  const serviceAccount = resolveServiceAccount();
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
-  firebaseInitialized = true;
+
+  try {
+    const serviceAccount = resolveServiceAccount();
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      projectId: serviceAccount.project_id || toTrimmedString(process.env.FIREBASE_PROJECT_ID) || undefined,
+    });
+    firebaseInitialized = true;
+    return;
+  } catch (error) {
+    const projectId =
+      toTrimmedString(process.env.FIREBASE_PROJECT_ID) ||
+      toTrimmedString(process.env.GOOGLE_OAUTH_PROJECT_ID);
+
+    if (!projectId) {
+      firebaseInitError = error;
+      throw error;
+    }
+
+    // verifyIdToken can work with projectId + Google public certs for signature validation.
+    admin.initializeApp({ projectId });
+    firebaseInitialized = true;
+  }
 };
 
 async function verifyFirebaseToken(idToken) {
@@ -43,7 +68,18 @@ async function verifyFirebaseToken(idToken) {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     return decodedToken;
   } catch (error) {
-    console.error('Error verifying Firebase ID token:', error);
+    const message = error?.message || 'Invalid Firebase ID token';
+    console.error('Error verifying Firebase ID token:', message);
+
+    if (
+      firebaseInitError ||
+      message.includes('Missing Firebase credentials') ||
+      message.includes('Firebase credentials file not found') ||
+      message.includes('not valid JSON')
+    ) {
+      throw new Error(`Firebase server configuration error: ${message}`);
+    }
+
     throw new Error('Invalid Firebase ID token');
   }
 }

@@ -228,9 +228,10 @@ router.post('/firebase', async (req, res) => {
       themePreference: user.themePreference || 'light',
     });
   } catch (err) {
-    return res.status(401).json({ msg: err.message || 'Google login failed' });
+    const message = err?.message || 'Google login failed';
+    const isConfigError = message.includes('Firebase server configuration error');
+    return res.status(isConfigError ? 500 : 401).json({ msg: message });
   }
 });
 
 module.exports = router;
-

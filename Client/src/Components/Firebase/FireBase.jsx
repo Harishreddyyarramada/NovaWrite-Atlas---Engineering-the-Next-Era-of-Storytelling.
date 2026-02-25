@@ -3,6 +3,29 @@ import { signInWithPopup } from "firebase/auth";
 import API from "../../Utils/api.js";
 import { auth, provider } from "./firebase.js";
 
+const getGoogleAuthErrorMessage = (error) => {
+  const code = error?.code || "";
+  const firebaseMessage = error?.message || "";
+  const apiMessage = error?.response?.data?.msg || "";
+
+  if (apiMessage) return apiMessage;
+
+  if (code === "auth/popup-closed-by-user") {
+    return "Google sign-in was cancelled.";
+  }
+  if (code === "auth/popup-blocked") {
+    return "Popup blocked by browser. Allow popups and try again.";
+  }
+  if (code === "auth/unauthorized-domain") {
+    return "This domain is not authorized in Firebase Authentication.";
+  }
+  if (code === "auth/network-request-failed") {
+    return "Network error while contacting Firebase.";
+  }
+
+  return firebaseMessage || "Google sign-in failed.";
+};
+
 export default function GoogleLogin({ onSuccess, onError, disabled = false }) {
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +40,7 @@ export default function GoogleLogin({ onSuccess, onError, disabled = false }) {
       const response = await API.post("/auth/firebase", { token: firebaseIdToken });
       onSuccess?.(response.data);
     } catch (error) {
-      onError?.(error?.response?.data?.msg || "Google sign-in failed.");
+      onError?.(getGoogleAuthErrorMessage(error));
     } finally {
       setLoading(false);
     }
