@@ -160,7 +160,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/google', async (req, res) => {
+router.post('/firebase', async (req, res) => {
   try {
     const { token } = req.body;
 
