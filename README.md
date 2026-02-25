@@ -90,14 +90,14 @@ PORT=3000
 CLIENT_URL=http://localhost:5173
 MONGODB_URI=mongodb://127.0.0.1:27017/blogbase
 
-JWT_SECRET_KEY=replace_with_secure_secret
+JWT_SECRET_KEY=replace_with_a_32_plus_character_secret
 TOKEN_EXPRIES_IN=7d
 
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 
-FIREBASE_SERVICE_ACCOUNT_PATH=Server/Config/GoogleService.json
+FIREBASE_SERVICE_ACCOUNT_PATH=Server/Config/GoogleService.local.json
 # FIREBASE_SERVICE_ACCOUNT_JSON={"type":"service_account",...}
 
 EMAIL_SERVICE=gmail
@@ -110,6 +110,7 @@ LOGIN_MAIL_POST_LIMIT=5
 
 Notes:
 - Configure either `FIREBASE_SERVICE_ACCOUNT_PATH` or `FIREBASE_SERVICE_ACCOUNT_JSON`.
+- Do not commit Firebase service account JSON files to git.
 - `LOGIN_MAIL_COOLDOWN_HOURS` limits how often a user receives login digest mail.
 
 ## Local Development

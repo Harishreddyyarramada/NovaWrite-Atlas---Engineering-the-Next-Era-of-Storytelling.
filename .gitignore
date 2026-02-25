@@ -5,6 +5,8 @@
 .env.local
 .env.development
 .env.production
+Client/.env
+Server/.env
 
 # =========================
 # Node.js
@@ -54,4 +56,4 @@ logs/
 # =========================
 uploads/
 Server/Config/GoogleService.json
-Client/src/Components/Firebase/firebase.js
+Server/Config/GoogleService.local.json

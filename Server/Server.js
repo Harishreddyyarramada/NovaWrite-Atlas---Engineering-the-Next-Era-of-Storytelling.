@@ -5,13 +5,16 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const connectDB = require('./Config/db.js');
+const { validateEnv } = require('./Config/env.js');
 const User = require('./Models/User');
+
+validateEnv();
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL,
     credentials: true,
   },
 });
@@ -26,7 +29,7 @@ app.locals.postViewers = postViewers;
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
