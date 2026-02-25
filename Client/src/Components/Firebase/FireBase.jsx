@@ -14,7 +14,7 @@ export default function GoogleLogin({ onSuccess, onError, disabled = false }) {
       const result = await signInWithPopup(auth, provider);
       const firebaseIdToken = await result.user.getIdToken();
 
-      const response = await API.post("/auth/google", { token: firebaseIdToken });
+      const response = await API.post("/auth/firebase", { token: firebaseIdToken });
       onSuccess?.(response.data);
     } catch (error) {
       onError?.(error?.response?.data?.msg || "Google sign-in failed.");
