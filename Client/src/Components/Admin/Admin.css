@@ -1,0 +1,153 @@
+.admin-auth-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.admin-auth-card {
+  width: min(520px, 100%);
+  padding: 24px;
+}
+
+.admin-auth-card h1 {
+  margin: 0;
+}
+
+.admin-auth-card p {
+  color: var(--text-soft);
+}
+
+.admin-auth-card form {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-auth-card label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.admin-auth-card input {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.admin-auth-card button {
+  border: none;
+  border-radius: 11px;
+  padding: 11px;
+  color: #fff;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0d6adf, #07a7ba);
+}
+
+.admin-page {
+  padding: 22px 0 34px;
+}
+
+.admin-layout {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-head {
+  padding: 16px;
+}
+
+.admin-head h2 {
+  margin: 0;
+}
+
+.admin-head p {
+  margin: 4px 0 0;
+  color: var(--text-soft);
+}
+
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-stat-grid article {
+  padding: 13px;
+}
+
+.admin-stat-grid strong {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.admin-stat-grid span {
+  color: var(--text-soft);
+}
+
+.admin-chart {
+  padding: 14px;
+}
+
+.admin-chart h3 {
+  margin: 0 0 5px;
+}
+
+.admin-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-table-card {
+  padding: 12px;
+}
+
+.admin-table-card h3 {
+  margin: 0 0 8px;
+}
+
+.admin-table-wrap {
+  overflow: auto;
+}
+
+.admin-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table-wrap th,
+.admin-table-wrap td {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 6px;
+  text-align: left;
+  font-size: 0.82rem;
+}
+
+.admin-table-wrap button {
+  border: 1px solid #ffd4d6;
+  border-radius: 9px;
+  background: #fff2f3;
+  color: #a71f2d;
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+.admin-error {
+  color: var(--danger);
+}
+
+.admin-state {
+  padding: 18px;
+}
+
+@media (max-width: 1000px) {
+  .admin-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-grid-two {
+    grid-template-columns: 1fr;
+  }
+}

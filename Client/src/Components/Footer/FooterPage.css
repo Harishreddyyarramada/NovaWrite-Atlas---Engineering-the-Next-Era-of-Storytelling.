@@ -1,0 +1,35 @@
+.footer-page-wrap {
+  padding: 24px 0 34px;
+}
+
+.footer-page-card {
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 30px);
+}
+
+.footer-page-card h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.footer-page-card p {
+  margin: 0 0 14px;
+  color: var(--text-soft);
+}
+
+.footer-page-card ul {
+  margin: 0 0 14px;
+  padding-left: 18px;
+}
+
+.footer-page-card li {
+  margin-bottom: 8px;
+  color: #31476d;
+}
+
+.footer-page-card a {
+  color: #105eb8;
+  font-weight: 700;
+  text-decoration: none;
+}

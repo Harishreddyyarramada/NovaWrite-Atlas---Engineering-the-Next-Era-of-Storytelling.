@@ -1,0 +1,22 @@
+.featured-hero {
+  position: relative;
+}
+
+.featured-badge {
+  position: static;
+  margin: 0 auto 18px;
+  border-radius: 999px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid #cce7d8;
+  color: #1f5d45;
+  background: #e9f8f1;
+}
+
+.featured-badge {
+  width: fit-content;
+}

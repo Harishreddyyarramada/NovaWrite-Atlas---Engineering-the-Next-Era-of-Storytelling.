@@ -1,0 +1,32 @@
+.page-shell {
+  width: min(1220px, 94%);
+  margin: 0 auto;
+}
+
+.elevated-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.pill-brand {
+  color: var(--brand-strong);
+  background: #d9f5f7;
+}
+
+.pill-warm {
+  color: #9a4d00;
+  background: #ffe4d6;
+}

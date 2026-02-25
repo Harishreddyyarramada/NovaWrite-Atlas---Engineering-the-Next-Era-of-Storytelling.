@@ -24,7 +24,7 @@ import W from './W.png';
 import X from './X.png';
 import Y from './Y.png';
 import Z from './Z.png';
-import BlogBase from './BlogBase.jpg';
+import Logo from './NovaWriteAtlasLogo.png';
 const Assets = {
   A,
   B,
@@ -52,6 +52,6 @@ const Assets = {
   X,
   Y,
   Z,
-  BlogBase,
+  Logo,
 };
 export default Assets 

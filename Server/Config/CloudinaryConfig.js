@@ -3,23 +3,21 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary,
+  cloudinary: cloudinary,
   params: {
-    folder: 'blog_profiles',
-    allowed_formats: ['jpg', 'jpeg', 'png'],
+    folder: 'blog-platform',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+    resource_type: 'auto',
   },
 });
-const storageProfile = new CloudinaryStorage({
+
+module.exports = {
   cloudinary,
-  params: {
-    folder: 'user_profiles',
-    allowed_formats: ['jpg', 'jpeg', 'png'],
-  },
-});
-module.exports = { cloudinary, storage ,storageProfile};
+  storage,
+};

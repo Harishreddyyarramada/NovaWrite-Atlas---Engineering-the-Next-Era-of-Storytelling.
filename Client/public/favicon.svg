@@ -1,0 +1,21 @@
+<svg width="560" height="160" viewBox="0 0 560 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="markGrad" x1="32" y1="28" x2="132" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#62D6D3"/>
+      <stop offset="0.52" stop-color="#8CB2FF"/>
+      <stop offset="1" stop-color="#B38BFF"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="165" y1="44" x2="324" y2="108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D3FA4"/>
+      <stop offset="1" stop-color="#0B68C4"/>
+    </linearGradient>
+  </defs>
+  <path d="M48 36C48 26.0589 56.0589 18 66 18H86.5C99.4787 18 112.148 24.1963 120.174 34.7015L132.5 50.8379V110C132.5 119.941 124.441 128 114.5 128H94C81.0213 128 68.3524 121.804 60.3258 111.299L48 95.1621V36Z" fill="url(#markGrad)" opacity="0.9"/>
+  <circle cx="102" cy="64" r="5.5" fill="#DDF7FF"/>
+  <path d="M120 52L92 90" stroke="#EEF7FF" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M95 85L89 112" stroke="#7A9AF0" stroke-width="2" stroke-linecap="round"/>
+  <text x="165" y="92" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="64" font-weight="700" fill="url(#titleGrad)">NovaWrite</text>
+  <text x="338" y="92" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="64" font-weight="500" fill="#4D5E7E">Atlas</text>
+  <line x1="330" y1="44" x2="330" y2="106" stroke="#6D7F9D" stroke-width="2.6" stroke-linecap="round"/>
+  <text x="165" y="132" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="34" font-weight="500" fill="#2D3F63">AI-Powered Content Intelligence</text>
+</svg>

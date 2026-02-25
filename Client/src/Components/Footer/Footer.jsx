@@ -1,67 +1,73 @@
-import React from 'react';
-import { 
-  FaFacebook, 
-  FaTwitter, 
-  FaInstagram, 
-  FaLinkedin, 
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
   FaYoutube,
-  FaHeart 
-} from 'react-icons/fa';
-import './Footer.css';
+} from "react-icons/fa";
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        
-        <div className="footer-section about">
-          <h2 className="logo-text">Blogger Website</h2>
+    <footer className="site-footer">
+      <div className="page-shell footer-grid">
+        <section>
+          <h3>NovaWrite Atlas</h3>
           <p>
-            Sharing ideas, stories, and updates from around the world.
-            Join our community of passionate writers and readers.
+            Publish standout stories, connect in real-time, and scale your creator
+            brand with premium writing intelligence.
           </p>
-          <div className="contact">
-            <span><a href={`mailto:blogbaseofficial@gmail.com`} style={{textDecoration:'none',color:'white'}}><i className="fas fa-envelope"></i> blogbaseofficial@gmail.com </a></span>
-          </div>
-        </div>
+        </section>
 
-       
-        <div className="footer-section links">
-          <h2>Quick Links</h2>
-          <ul>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/terms">Terms of Service</a></li>
-          </ul>
-        </div>
+        <section>
+          <h4>Platform</h4>
+          <Link to="/home">Home</Link>
+          <Link to="/home/posts">My Posts</Link>
+          <Link to="/chat">Live Chat</Link>
+          <Link to="/myprofile">Profile</Link>
+        </section>
 
-        <div className="footer-section social">
-          <h2>Follow Us</h2>
-          <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <section>
+          <h4>Resources</h4>
+          <Link to="/home/support">Support</Link>
+          <Link to="/home/partnerships">Partnerships</Link>
+          <Link to="/home/privacy">Privacy</Link>
+          <Link to="/home/terms">Terms</Link>
+        </section>
+
+        <section>
+          <h4>Email</h4>
+          <a href="mailto:blogbaseofficial@gmail.com">blogbaseofficial@gmail.com</a>
+          <a href="mailto:blogbaseofficial@gmail.com?subject=Support%20Request">Contact Support</a>
+        </section>
+
+        <section>
+          <h4>Follow</h4>
+          <div className="social-row">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer">
               <FaFacebook />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <a href="https://twitter.com" target="_blank" rel="noreferrer">
               <FaTwitter />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer">
               <FaInstagram />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer">
               <FaLinkedin />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <a href="https://youtube.com" target="_blank" rel="noreferrer">
               <FaYoutube />
             </a>
           </div>
-        </div>
+        </section>
       </div>
 
-      
-      <div className="footer-bottom">
-        &copy; {new Date().getFullYear()} Blogger Website | Made with <FaHeart className="heart-icon" /> by Blogger Team
-      </div>
+      <p className="footer-note">
+        Copyright {new Date().getFullYear()} NovaWrite Atlas. All rights reserved.
+      </p>
     </footer>
   );
 };
