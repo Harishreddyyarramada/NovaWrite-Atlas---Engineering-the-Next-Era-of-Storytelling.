@@ -12,9 +12,28 @@ validateEnv();
 
 const app = express();
 const server = http.createServer(app);
+
+const parseAllowedOrigins = () => {
+  const envOrigins = String(process.env.CLIENT_URL || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+  // Safe local defaults for development.
+  const defaults = ['http://localhost:5173', 'http://localhost:3000'];
+  return [...new Set([...envOrigins, ...defaults])];
+};
+
+const allowedOrigins = parseAllowedOrigins();
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+};
+
 const io = socketIo(server, {
   cors: {
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
   },
 });
@@ -27,12 +46,7 @@ app.locals.postViewers = postViewers;
 
 // Middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/auth', require('./Routes/authRoutes'));
