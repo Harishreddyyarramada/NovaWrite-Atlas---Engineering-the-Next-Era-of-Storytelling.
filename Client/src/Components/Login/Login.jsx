@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import API from "../../Utils/api.js";
 import GoogleLogin from "../Firebase/FireBase.jsx";
+import { clearAuthSession, isTokenExpired } from "../../Utils/authSession.js";
 import "./Login.css";
 
 const initialForm = {
@@ -13,16 +14,32 @@ const initialForm = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formData, setFormData] = useState(initialForm);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    if (isTokenExpired(token)) {
+      clearAuthSession();
+      return;
+    }
+
+    if (token) {
       navigate("/home");
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const sessionState = new URLSearchParams(location.search).get("session");
+    if (sessionState === "expired") {
+      setError("Session expired. Please login again.");
+    }
+  }, [location.search]);
 
   const toggleMode = () => {
     setIsLoginMode((prev) => !prev);

@@ -1,20 +1,39 @@
-// src/pages/NotFound.js
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./PagenotFound.css";
 
-const NotFound = () => {
+const Pagenotfound = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="d-flex vh-100 justify-content-center align-items-center bg-light">
-      <div className="text-center">
-        <h1 className="display-1 fw-bold text-danger">404</h1>
-        <h2 className="mb-3">Oops! Page Not Found</h2>
-        <p className="text-muted mb-4">
-          The page you’re looking for doesn’t exist or has been moved.
+    <main className="notfound-page">
+      <div className="notfound-bg-shape shape-one" />
+      <div className="notfound-bg-shape shape-two" />
+      <div className="notfound-bg-shape shape-three" />
+
+      <section className="notfound-card">
+        <span className="notfound-badge">Premium Experience</span>
+        <p className="notfound-code">404</p>
+        <h1>This route does not exist.</h1>
+        <p>
+          The page was moved, removed, or the URL is incorrect. Let&apos;s get you
+          back to the right workspace.
         </p>
-        <a href="/" className="btn btn-primary">Go to Home</a>
-      </div>
-    </div>
+        <div className="notfound-actions">
+          <Link to="/" className="notfound-btn primary-btn">
+            Back To Login
+          </Link>
+          <button
+            type="button"
+            className="notfound-btn ghost-btn"
+            onClick={() => navigate(-1)}
+          >
+            Go Back
+          </button>
+        </div>
+      </section>
+    </main>
   );
 };
 
-export default NotFound;
+export default Pagenotfound;

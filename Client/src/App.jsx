@@ -19,10 +19,28 @@ import FooterPage from "./Components/Footer/FooterPage.jsx";
 import ScrollToTop from "./Components/Common/ScrollToTop.jsx";
 import { useEffect } from "react";
 import { BrowserRouter , Routes , Route } from "react-router-dom";
+import { forceRelogin, isTokenExpired } from "./Utils/authSession.js";
 function App() {
   useEffect(() => {
     const theme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", theme);
+  }, []);
+
+  useEffect(() => {
+    const validateSession = () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      if (isTokenExpired(token)) {
+        forceRelogin();
+      }
+    };
+
+    validateSession();
+    const intervalId = window.setInterval(validateSession, 15000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
   }, []);
 
   return (

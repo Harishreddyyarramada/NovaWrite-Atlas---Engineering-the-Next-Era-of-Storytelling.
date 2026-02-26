@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiActivity, FiBookmark, FiHome, FiMenu, FiMessageCircle, FiUser, FiX, FiZap } from "react-icons/fi";
 import Assests from "../../assets/Assests.js";
 import API from "../../Utils/api.js";
+import { clearAuthSession } from "../../Utils/authSession.js";
 import postCategories from "../../Constants/postCategories.js";
 import Logo from "../../assets/NovaWriteAtlasLogo.png";
 import "./Navbar.css";
@@ -95,7 +96,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    clearAuthSession();
     navigate("/");
   };
 

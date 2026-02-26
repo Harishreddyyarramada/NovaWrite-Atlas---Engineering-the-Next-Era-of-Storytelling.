@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import API from "../../Utils/api.js";
 import "./Admin.css";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  React.useEffect(() => {
+    const sessionState = new URLSearchParams(location.search).get("session");
+    if (sessionState === "expired") {
+      setError("Session expired. Please login again.");
+    }
+  }, [location.search]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
